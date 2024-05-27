@@ -11,3 +11,50 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.login-container {
+  display: flex;
+  height: 100vh;
+}
+
+.form-section, .graphic-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-section {
+  padding: 30px;
+}
+
+.graphic-section {
+  background-color: #6C63FF; 
+  color: white;
+}
+
+input[type="email"], input[type="password"] {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+button {
+  width: 84%;
+  padding: 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+a {
+  color: dodgerblue;
+}
