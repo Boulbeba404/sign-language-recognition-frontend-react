@@ -1,11 +1,8 @@
-import React from 'react';
-import { Login } from "./pages"
+import React from "react";
+import { ForgotPassword, Login, ResetPassword } from "./pages";
 
 function App() {
-
-  return (
-    <Login />
-  );
+  return <ForgotPassword />;
 }
 
 export default App;

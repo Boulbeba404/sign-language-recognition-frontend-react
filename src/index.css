@@ -1,14 +1,14 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -39,11 +39,6 @@ input[type="password"] {
   box-sizing: border-box;
 }
 
-input[type="password"] {
-  margin: 0px !important;
-  margin-top: 10px;
-}
-
 button {
   width: 100%;
   padding: 10px;
@@ -63,4 +58,15 @@ button:hover {
 
 a {
   color: dodgerblue;
+}
+
+.confirm-password-input {
+  margin: 0px !important;
+  margin-top: 10px !important ;
+  margin-bottom: 10px !important;
+}
+
+.password-input {
+  margin: 0px !important;
+  margin-top: 10px;
 }

@@ -1,9 +1,12 @@
 import logo from "../../assets/logo.png";
+
 function AuthForm({
   email,
   password,
+  confirmPassword,
   onChangeEmail,
   onChangePassword,
+  onChangeConfirmPassword,
   onSubmit,
   type,
 }) {
@@ -34,6 +37,7 @@ function AuthForm({
           )}
           {(type === "login" || type === "resetPassword") && (
             <input
+              className="password-input"
               type="password"
               id="password"
               name="password"
@@ -41,6 +45,18 @@ function AuthForm({
               required
               value={password}
               onChange={(e) => onChangePassword(e.target.value)}
+            />
+          )}
+          {type === "resetPassword" && (
+            <input
+              className="confirm-password-input"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="Confirm password"
+              required
+              value={confirmPassword}
+              onChange={(e) => onChangeConfirmPassword(e.target.value)}
             />
           )}
           {type === "login" && (
