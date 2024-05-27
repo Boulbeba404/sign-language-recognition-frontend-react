@@ -17,7 +17,8 @@ code {
   height: 100vh;
 }
 
-.form-section, .graphic-section {
+.form-section,
+.graphic-section {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -29,26 +30,31 @@ code {
   padding: 30px;
 }
 
-.graphic-section {
-  background-color: #6C63FF; 
-  color: white;
-}
-
-input[type="email"], input[type="password"] {
-  width: 80%;
+input[type="email"],
+input[type="password"] {
+  width: 100%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
   box-sizing: border-box;
 }
 
+input[type="password"] {
+  margin: 0px !important;
+  margin-top: 10px;
+}
+
 button {
-  width: 84%;
+  width: 100%;
   padding: 10px;
-  background-color: #4CAF50;
+  background-color: #404040;
   color: white;
   border: none;
   cursor: pointer;
+}
+
+.text-link {
+  color: #404040;
 }
 
 button:hover {
