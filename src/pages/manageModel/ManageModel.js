@@ -5,6 +5,7 @@ import ReactQuill from "react-quill";
 
 const ManageModel = () => {
   const [name, setName] = useState("");
+  const [architecture,setArchitecture]=useState("");
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
 
@@ -30,6 +31,16 @@ const ManageModel = () => {
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Enter name"
+        />
+      </Form.Group>
+
+      <Form.Group className="mb-3">
+        <Form.Label className="ds-label">Architecture</Form.Label>
+        <Form.Control
+          type="text"
+          value={architecture}
+          onChange={(e) => setArchitecture(e.target.value)}
+          placeholder="Enter architecture"
         />
       </Form.Group>
 
