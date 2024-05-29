@@ -88,26 +88,27 @@ a {
 .form-control,
 .btn {
   border-radius: 0px !important;
+  border: solid #404040 !important;
 }
-.btn-primary{
-  background-color: #404040!important;
+.btn-primary {
+  background-color: #404040 !important;
 }
-.active>.page-link{
-  background-color: #404040!important;
-  border-color:#404040!important;
-  color: white!important;
+.active > .page-link {
+  background-color: #404040 !important;
+  border-color: #404040 !important;
+  color: white !important;
 }
 
-.page-link{
+.page-link {
   color: #404040;
 }
 
 .page-item:last-child .page-link {
   border-top-right-radius: 0px;
-   border-bottom-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .page-item:first-child .page-link {
-  border-top-left-radius:  0px;
-  border-bottom-left-radius:  0px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
