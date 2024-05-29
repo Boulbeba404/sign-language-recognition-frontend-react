@@ -1,9 +1,9 @@
 import React from "react";
-import { ForgotPassword, Login, ManageModel, ModelsList, ResetPassword } from "./pages";
+import { ChangePassword, ForgotPassword, Login, ManageModel, ModelsList, ResetPassword } from "./pages";
 
 function App() {
   return (
-    <ManageModel/>
+    <ChangePassword/>
   );
 }
 
