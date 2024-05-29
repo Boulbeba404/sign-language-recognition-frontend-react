@@ -5,7 +5,7 @@ import ReactQuill from "react-quill";
 
 const ManageModel = () => {
   const [name, setName] = useState("");
-  const [architecture,setArchitecture]=useState("");
+  const [architecture, setArchitecture] = useState("");
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
 
@@ -49,34 +49,36 @@ const ManageModel = () => {
         <ReactQuill theme="snow" value={content} onChange={setContent} />
       </Form.Group>
 
-      <Form.Group className="mb-3">
-        <InputGroup>
-          <Form.Control
-            type="file"
-            onChange={handleFileChange}
-            accept=".json"
-            style={{ display: "none" }}
-            id="file-upload"
-          />
-          <InputGroup.Text
-            className="w-100"
-            as="label"
-            htmlFor="file-upload"
-            style={{
-              display: "flex",
-              alignItems: "center",
-              cursor: "pointer",
-              justifyContent: "center",
-            }}
-          >
-            <FileEarmarkCode className="me-2" /> Click to upload JSON file
-          </InputGroup.Text>
-        </InputGroup>
-      </Form.Group>
+      <div className="px-5">
+        <Form.Group className="mb-3">
+          <InputGroup>
+            <Form.Control
+              type="file"
+              onChange={handleFileChange}
+              accept=".json"
+              style={{ display: "none" }}
+              id="file-upload"
+            />
+            <InputGroup.Text
+              className="w-100"
+              as="label"
+              htmlFor="file-upload"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                cursor: "pointer",
+                justifyContent: "center",
+              }}
+            >
+              <FileEarmarkCode className="me-2" /> Click to upload JSON file
+            </InputGroup.Text>
+          </InputGroup>
+        </Form.Group>
 
-      <Button variant="dark" type="submit">
-        Submit
-      </Button>
+        <Button variant="dark" type="submit">
+          Submit
+        </Button>
+      </div>
     </Form>
   );
 };
