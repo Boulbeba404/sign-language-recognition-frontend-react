@@ -7,6 +7,7 @@ import { Container } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { PageTitle } from "../../components";
 
 const ModelsList = () => {
   const navigate = useNavigate();
@@ -40,9 +41,15 @@ const ModelsList = () => {
   });
 
   return (
-    <Container sx={{ marginTop: 4 }}>
+    <Container>
+      <PageTitle className="mb-3" title={"Models List"} />
       <div className="d-flex justify-content-end mb-2">
-        <Button style={{width:250}} onClick={() => navigate("/manage-model")}>Create Model</Button>
+        <Button
+          style={{ width: 150 }}
+          onClick={() => navigate("/manage-model")}
+        >
+          Create Model
+        </Button>
       </div>
       <MaterialReactTable table={table} />
     </Container>

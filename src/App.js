@@ -10,6 +10,7 @@ import {
   ResetPassword,
 } from "./pages";
 import { PrivateInterfaceLayout } from "./components";
+import LanguagesList from "./pages/languagesList/LanguagesList";
 
 function App() {
   return (
@@ -29,8 +30,11 @@ function App() {
             </PrivateInterfaceLayout>
           }
         >
+          <Route path="/" element={<ModelsList />} />
           <Route path="/manage-model" element={<ManageModel />} />
           <Route path="/models-list" element={<ModelsList />} />
+          <Route path="/languages-list" element={<LanguagesList />} />
+          <Route path="/profile" element={<></>} />
         </Route>
       </Routes>
     </BrowserRouter>

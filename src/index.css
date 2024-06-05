@@ -112,3 +112,10 @@ a {
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
+
+.ps-sidebar-container {
+  background-color: white !important;
+}
+.ps-sidebar-root {
+  border: none !important;
+}
