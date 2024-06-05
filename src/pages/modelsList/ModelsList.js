@@ -1,71 +1,50 @@
 import React, { useState } from "react";
-import { Table, Button, Container, Pagination } from "react-bootstrap";
-import { FileEarmarkCode, PencilSquare, Trash } from "react-bootstrap-icons";
+import {
+  MaterialReactTable,
+  useMaterialReactTable,
+} from "material-react-table";
+import { Container } from "@mui/material";
+import { Edit, Delete } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 const ModelsList = () => {
-  const [pagenNumber, setPageNumber] = useState(1);
-  const [paginationLength, setPaginationLength] = useState(10);
+  const navigate = useNavigate();
   const [models, setModels] = useState([
     { id: 1, architecture: "Arch 1", name: "Model 1" },
     { id: 2, architecture: "Arch 2", name: "Model 2" },
     { id: 3, architecture: "Arch 2", name: "Model 3" },
   ]);
 
-  const handleCreateModel = () => {};
+  const columns = [
+    { accessorKey: "name", header: "Name" },
+    { accessorKey: "architecture", header: "Architecture" },
+    {
+      accessorKey: "actions",
+      header: "Actions",
+      Cell: ({ row }) => (
+        <div>
+          <Edit
+            style={{ cursor: "pointer", marginRight: 8 }}
+            onClick={() => {}}
+          />
+          <Delete style={{ cursor: "pointer" }} onClick={() => {}} />
+        </div>
+      ),
+    },
+  ];
 
-  const handleDelete = (id) => {
-    setModels(models.filter((model) => model.id !== id));
-  };
+  const table = useMaterialReactTable({
+    columns,
+    data: models,
+  });
 
   return (
-    <Container>
-      <div className="d-flex justify-content-end">
-        <Button
-          onClick={handleCreateModel}
-          style={{ float: "right", marginBottom: 20, width: "150px" }}
-        >
-          Create Model
-        </Button>
+    <Container sx={{ marginTop: 4 }}>
+      <div className="d-flex justify-content-end mb-2">
+        <Button style={{width:250}} onClick={() => navigate("/manage-model")}>Create Model</Button>
       </div>
-
-      <Table striped bordered hover>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Architecture</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {models.map((model) => (
-            <tr key={model.id}>
-              <td>{model.name}</td>
-              <td>
-                {model.architecture}
-              </td>
-              <td>
-                <PencilSquare
-                  className="me-2"
-                  style={{ cursor: "pointer" }}
-                  onClick={() => alert(`Edit ${model.id}`)}
-                />
-                <Trash
-                  style={{ cursor: "pointer" }}
-                  onClick={() => handleDelete(model.id)}
-                />
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table>
-
-      <Pagination>
-        {Array.from({ length: paginationLength }).map((_, index) => (
-          <Pagination.Item key={index} active={index + 1 === pagenNumber}>
-            {index + 1}
-          </Pagination.Item>
-        ))}
-      </Pagination>
+      <MaterialReactTable table={table} />
     </Container>
   );
 };
