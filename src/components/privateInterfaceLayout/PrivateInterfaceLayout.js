@@ -1,11 +1,13 @@
 import React from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
-import { Navbar, Container, Nav } from "react-bootstrap";
+import { Navbar, Container, Nav, Dropdown } from "react-bootstrap";
 import { GearFill, List, Translate, PersonCircle } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { useAuth } from "../../hooks";
 
 const PrivateInterfaceLayout = ({ children }) => {
+  const {logout} = useAuth()
   return (
     <div style={{ height: "100vh" }}>
       <Navbar className="bg-white" expand="lg">
@@ -14,9 +16,18 @@ const PrivateInterfaceLayout = ({ children }) => {
             <img src={logo} alt="App Logo" style={{ height: "45px" }} />
           </Navbar.Brand>
           <Nav className="ms-auto">
-            <Nav.Link as={Link} to="/profile">
-              <PersonCircle size={30} />
-            </Nav.Link>
+            <Dropdown align={"end"}>
+              <Dropdown.Toggle variant="link" id="profile-dropdown">
+                <PersonCircle size={30} />
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                <Dropdown.Item as={Link} to="/profile">Manage Profile</Dropdown.Item>
+                <Dropdown.Item as="button" onClick={logout}>
+                  Logout
+                </Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
           </Nav>
         </Container>
       </Navbar>

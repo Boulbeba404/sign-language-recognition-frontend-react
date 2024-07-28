@@ -19,6 +19,7 @@ function Login() {
     } catch (err) {
       console.error(err);
       toast.error("Please verify your email or password.");
+      setAuthStore("accessToken", "refreshToken", "userId");
     }
   };
 
