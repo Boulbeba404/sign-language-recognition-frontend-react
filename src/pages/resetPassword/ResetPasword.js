@@ -1,13 +1,24 @@
 import { useState } from "react";
 import { AuthForm } from "../../components";
+import { toast } from "react-toastify";
+import { AuthAPI } from "../../apis";
+import { useParams } from "react-router-dom";
 
 function ResetPassword() {
+  const authApi = new AuthAPI();
+  const { token } = useParams();
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    /// api
+    try {
+      await authApi.resetPassword(token, password, confirmPassword);
+      toast.success("Password changed successfully!");
+    } catch (err) {
+      console.error(err);
+      toast.error("Internal server error!");
+    }
   };
 
   return (

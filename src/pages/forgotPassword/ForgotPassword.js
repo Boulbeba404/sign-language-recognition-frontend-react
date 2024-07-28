@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { AuthForm } from "../../components";
+import { AuthAPI } from "../../apis";
+import { toast } from "react-toastify";
 
 function ForgotPassword() {
+  const authApi = new AuthAPI();
   const [email, setEmail] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    /// api
+    try {
+      await authApi.sendEmailReset(email);
+      toast.success("Email reset password sent successfully!")
+    } catch (err) {
+      console.error(err);
+      toast.error("Email not found.");
+    }
   };
 
   return (

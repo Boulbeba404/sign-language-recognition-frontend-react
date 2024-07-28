@@ -18,7 +18,7 @@ function Login() {
       setAuthStore(accessToken, refreshToken, userId);
     } catch (err) {
       console.error(err);
-      toast.error("Erreur! Please verify your email or password");
+      toast.error("Please verify your email or password.");
     }
   };
 
