@@ -1,5 +1,11 @@
 import React from "react";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Outlet,
+  Navigate,
+} from "react-router-dom";
 import {
   About,
   ChangePassword,
@@ -12,12 +18,37 @@ import {
   ResetPassword,
 } from "../pages";
 import { PrivateInterfaceLayout } from "../components";
+import { useAuth } from "../hooks";
 
 function AppRoutes() {
+  const { accessToken, refreshToken, userId } = useAuth();
+
+  function PublicRouteRender(props) {
+    return !accessToken && !refreshToken && !userId ? (
+      props.children
+    ) : (
+      <Navigate to="/" />
+    );
+  }
+
+  function PrivateRouteRender(props) {
+    return !accessToken && !refreshToken && !userId ? (
+      <Navigate to="/login" />
+    ) : (
+      props.children
+    );
+  }
+
   return (
     <BrowserRouter>
       <Routes>
-        <Route>
+        <Route
+          element={
+            <PublicRouteRender>
+              <Outlet />
+            </PublicRouteRender>
+          }
+        >
           <Route path="/" element={<About />} />
           <Route path="/start-recognition" element={<></>} />
           <Route path="/login" element={<Login />} />
@@ -26,9 +57,11 @@ function AppRoutes() {
         </Route>
         <Route
           element={
-            <PrivateInterfaceLayout>
-              <Outlet />
-            </PrivateInterfaceLayout>
+            <PrivateRouteRender>
+              <PrivateInterfaceLayout>
+                <Outlet />
+              </PrivateInterfaceLayout>
+            </PrivateRouteRender>
           }
         >
           <Route path="/" element={<ModelsList />} />
