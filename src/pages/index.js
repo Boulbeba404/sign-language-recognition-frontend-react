@@ -5,6 +5,7 @@ import ManageModel from "./manageModel/ManageModel";
 import ModelsList from "./modelsList/ModelsList";
 import ChangePassword from "./changePassword/ChangePassword";
 import About from "./about/About";
+import MyProfile from "./myProfile/MyProfile";
 
 export {
   Login,
@@ -13,5 +14,6 @@ export {
   ManageModel,
   ModelsList,
   ChangePassword,
-  About
+  About,
+  MyProfile
 };

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 
 function AuthForm({
@@ -61,7 +62,9 @@ function AuthForm({
           )}
           {type === "login" && (
             <div style={{ marginTop: 10, marginBottom: 10 }}>
-              <a className="text-link">Forgot Password?</a>
+              <Link to={"/forgot-password"}>
+                <a className="text-link">Forgot Password?</a>
+              </Link>
             </div>
           )}
           <button type="submit">{title}</button>

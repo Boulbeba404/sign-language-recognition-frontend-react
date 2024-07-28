@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Form, Button, Container } from "react-bootstrap";
+import { PageTitle } from "../../components";
 
 const ChangePassword = () => {
   const [passwords, setPasswords] = useState({
-    oldPassword: '',
-    newPassword: '',
-    confirmPassword: ''
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    setPasswords(prevState => ({
+    setPasswords((prevState) => ({
       ...prevState,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -28,6 +29,7 @@ const ChangePassword = () => {
 
   return (
     <Container>
+      <PageTitle className="mb-3" title="Change password" />
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formOldPassword">
           <Form.Label className="ds-label">Old Password</Form.Label>
