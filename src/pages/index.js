@@ -6,6 +6,7 @@ import ModelsList from "./modelsList/ModelsList";
 import ChangePassword from "./changePassword/ChangePassword";
 import About from "./about/About";
 import MyProfile from "./myProfile/MyProfile";
+import LanguagesList from './languagesList/LanguagesList';
 
 export {
   Login,
@@ -15,5 +16,6 @@ export {
   ModelsList,
   ChangePassword,
   About,
-  MyProfile
+  MyProfile,
+  LanguagesList
 };
