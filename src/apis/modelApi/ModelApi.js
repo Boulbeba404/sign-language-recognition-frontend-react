@@ -23,13 +23,17 @@ class ModelAPI {
     });
   }
 
-  async updateModel(id,name, architecture, description, file) {
-    return await this._api.post("create", {
+  async updateModel(id, name, architecture, description, file) {
+    return await this._api.post(`update/${id}`, {
       name,
       architecture,
       description,
       file,
     });
+  }
+
+  async getModelById(id) {
+    return this._api.get(`getbyid/${id}`);
   }
 
   async getList() {

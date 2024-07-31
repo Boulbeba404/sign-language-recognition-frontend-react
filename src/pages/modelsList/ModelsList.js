@@ -39,7 +39,7 @@ const ModelsList = () => {
         <div>
           <Edit
             style={{ cursor: "pointer", marginRight: 8 }}
-            onClick={() => {}}
+            onClick={() => navigate(`/update-model/${row.id}`)}
           />
           <Delete style={{ cursor: "pointer" }} onClick={() => {}} />
         </div>

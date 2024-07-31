@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
 import { FileEarmarkCode } from "react-bootstrap-icons";
 import ReactQuill from "react-quill";
@@ -15,12 +15,26 @@ const ManageModel = ({ id }) => {
   const [content, setContent] = useState("");
   const [file, setFile] = useState(null);
 
+  useEffect(() => {
+    if (id) {
+      handleFetch();
+    }
+  }, [id]);
+
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file && file.type === "application/json") {
       setFile(file);
     } else {
       alert("Please upload a JSON file.");
+    }
+  };
+
+  const handleFetch = async () => {
+    try {
+      const response = await modelApi.getModelById(id);
+    } catch (err) {
+      console.error(err);
     }
   };
 
