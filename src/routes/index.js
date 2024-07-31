@@ -11,12 +11,13 @@ import {
   ChangePassword,
   ForgotPassword,
   Login,
-  ManageModel,
+  CreateModel,
   ModelsList,
   MyProfile,
   UsersList,
   ResetPassword,
   StartRecognition,
+  UpdateModel,
   NotFound,
 } from "../pages";
 import { PrivateInterfaceLayout } from "../components";
@@ -70,7 +71,8 @@ function AppRoutes() {
             }
           >
             <Route path="/" element={<ModelsList />} />
-            <Route path="/manage-model" element={<ManageModel />} />
+            <Route path="/create-model" element={<CreateModel />} />
+            <Route path="/update-model/:id" element={<UpdateModel />} />
             <Route path="/models-list" element={<ModelsList />} />
             <Route path="/users-list" element={<UsersList />} />
             <Route path="/profile" element={<MyProfile />} />

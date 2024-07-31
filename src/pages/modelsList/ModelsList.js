@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -7,14 +7,27 @@ import { Edit, Delete } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { PageTitle } from "../../components";
+import { ModelAPI } from "../../apis";
 
 const ModelsList = () => {
+  const modelApi = new ModelAPI();
   const navigate = useNavigate();
   const [models, setModels] = useState([
     { id: 1, architecture: "Arch 1", name: "Model 1" },
     { id: 2, architecture: "Arch 2", name: "Model 2" },
     { id: 3, architecture: "Arch 2", name: "Model 3" },
   ]);
+
+  useEffect(() => {
+    handleFetch();
+  }, []);
+
+  const handleFetch = async () => {
+    try {
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const columns = [
     { accessorKey: "name", header: "Name" },
@@ -45,7 +58,7 @@ const ModelsList = () => {
       <div className="d-flex justify-content-end mb-2">
         <Button
           style={{ width: 150 }}
-          onClick={() => navigate("/manage-model")}
+          onClick={() => navigate("/create-model")}
         >
           Create Model
         </Button>

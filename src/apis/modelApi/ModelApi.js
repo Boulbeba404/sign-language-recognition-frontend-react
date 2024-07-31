@@ -11,7 +11,29 @@ class ModelAPI {
   }
 
   async getModelById(id) {
-    return await this._api.get(`/get/${id}`);
+    return await this._api.get(`get/${id}`);
+  }
+
+  async createModel(name, architecture, description, file) {
+    return await this._api.post("create", {
+      name,
+      architecture,
+      description,
+      file,
+    });
+  }
+
+  async updateModel(id,name, architecture, description, file) {
+    return await this._api.post("create", {
+      name,
+      architecture,
+      description,
+      file,
+    });
+  }
+
+  async getList() {
+    return await this._api.get("list");
   }
 }
 export { ModelAPI };

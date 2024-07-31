@@ -1,10 +1,15 @@
 import React, { useState } from "react";
-import { Button, Container, Form, InputGroup } from "react-bootstrap";
+import { Button, Form, InputGroup } from "react-bootstrap";
 import { FileEarmarkCode } from "react-bootstrap-icons";
 import ReactQuill from "react-quill";
 import { PageTitle } from "../../components";
+import { ModelAPI } from "../../apis/modelApi/ModelApi";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
-const ManageModel = () => {
+const ManageModel = ({ id }) => {
+  const modelApi = new ModelAPI();
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [architecture, setArchitecture] = useState("");
   const [content, setContent] = useState("");
@@ -19,13 +24,26 @@ const ManageModel = () => {
     }
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    try {
+      if (id) {
+        await modelApi.updateModel(id, name, architecture, content, file);
+        toast.success("Model updated successfully!");
+      } else {
+        await modelApi.createModel(name, architecture, content, file);
+        toast.success("Model created successfully!");
+      }
+      navigate("/models-list");
+    } catch (err) {
+      console.error(err);
+      toast.error("Internal server error!");
+    }
   };
 
   return (
     <>
-      <PageTitle className="mb-3" title="Create Model" />
+      <PageTitle className="mb-3" title={id ? "Edit Model" : "Create Model"} />
       <Form onSubmit={handleSubmit} style={{ color: "#404040" }}>
         <Form.Group className="mb-3">
           <Form.Label className="ds-label">Name</Form.Label>

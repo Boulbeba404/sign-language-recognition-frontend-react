@@ -42,7 +42,7 @@ const PrivateInterfaceLayout = ({ children }) => {
         <Sidebar className="bg-white">
           <Menu className="bg-white" iconShape="square">
             <MenuItem
-              component={<Link to="/manage-model" />}
+              component={<Link to="/create-model" />}
               icon={<GearFill />}
             >
               Create Model
