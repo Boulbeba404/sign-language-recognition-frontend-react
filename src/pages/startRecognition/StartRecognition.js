@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as tf from "@tensorflow/tfjs";
 import Webcam from "react-webcam";
-import axios from "axios";
 import Select from "react-select";
 import { Container, Image } from "react-bootstrap";
 import logo from "../../assets/logo.png";
+import { ModelAPI } from "../../apis/modelApi/ModelApi";
 
 function App() {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
+  const modelApi = new ModelAPI();
   const [model, setModel] = useState(null);
   const [modelOptions, setModelOptions] = useState([]);
   const [selectedModel, setSelectedModel] = useState(1);
@@ -16,9 +17,7 @@ function App() {
   useEffect(() => {
     const loadModel = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:3000/api/get-model/${selectedModel}`
-        );
+        const response = await modelApi.getModelById(selectedModel);
         const modelJson = response.data;
 
         const loadedModel = await tf.loadLayersModel(
@@ -69,17 +68,17 @@ function App() {
       <div className="d-flex justify-content-between">
         <div>
           <div className="d-flex justify-content-center">
-          <Image src={logo} alt="App Logo" width={200} />
+            <Image src={logo} alt="App Logo" width={200} />
           </div>
           <h1 className="text-center">Start Classification</h1>
           <div className="mt-4 d-flex justify-content-center">
-          <Select
-            value={selectedModel}
-            onChange={() => {}}
-            options={modelOptions}
-            placeholder="Select a model..."
-          />
-        </div>
+            <Select
+              value={selectedModel}
+              onChange={() => {}}
+              options={modelOptions}
+              placeholder="Select a model..."
+            />
+          </div>
         </div>
         <div
           style={{

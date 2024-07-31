@@ -1,2 +1,3 @@
 import { AuthAPI } from "./authApi/AuthApi";
-export { AuthAPI };
+import { ModelAPI } from "./modelApi/ModelApi";
+export { AuthAPI,ModelAPI };

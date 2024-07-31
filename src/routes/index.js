@@ -73,7 +73,6 @@ function AppRoutes() {
           <Route path="/profile" element={<MyProfile />} />
           <Route path="/change-password" element={<ChangePassword />} />
           <Route path="/*" element={<>404</>} />
-
         </Route>
       </Routes>
     </BrowserRouter>
