@@ -24,7 +24,7 @@ const ManageModel = () => {
   };
 
   return (
-    <Container>
+    <>
       <PageTitle className="mb-3" title="Create Model" />
       <Form onSubmit={handleSubmit} style={{ color: "#404040" }}>
         <Form.Group className="mb-3">
@@ -81,7 +81,7 @@ const ManageModel = () => {
           Submit
         </Button>
       </Form>
-    </Container>
+    </>
   );
 };
 

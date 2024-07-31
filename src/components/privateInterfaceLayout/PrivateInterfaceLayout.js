@@ -51,7 +51,9 @@ const PrivateInterfaceLayout = ({ children }) => {
             </MenuItem>
           </Menu>
         </Sidebar>
-        <main style={{ flex: 1, padding: "10px" }}>{children}</main>
+        <main style={{ flex: 1, padding: "10px" }}>
+          <Container>{children}</Container>
+        </main>
       </div>
       <footer className="text-center text-lg-start">
         <div className="text-center p-3">© 2024 Sign Language Recognition</div>

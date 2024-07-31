@@ -3,7 +3,6 @@ import {
   MaterialReactTable,
   useMaterialReactTable,
 } from "material-react-table";
-import { Container } from "@mui/material";
 import { Edit, Delete } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -41,7 +40,7 @@ const ModelsList = () => {
   });
 
   return (
-    <Container>
+    <>
       <PageTitle className="mb-3" title={"Models List"} />
       <div className="d-flex justify-content-end mb-2">
         <Button
@@ -52,7 +51,7 @@ const ModelsList = () => {
         </Button>
       </div>
       <MaterialReactTable table={table} />
-    </Container>
+    </>
   );
 };
 

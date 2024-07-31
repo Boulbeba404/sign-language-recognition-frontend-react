@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { MaterialReactTable } from "material-react-table";
 import { PageTitle } from "../../components";
 import { Edit, Delete } from "@mui/icons-material";
@@ -43,7 +43,7 @@ const UsersList = () => {
   ];
 
   return (
-    <Container>
+    <>
       <PageTitle className="mb-3" title="Users List" />
       <div className="d-flex justify-content-end mb-2">
         <Button style={{ width: 150 }} onClick={() => handleOpenModal()}>
@@ -56,7 +56,7 @@ const UsersList = () => {
         handleClose={handleCloseModal}
         modalType={modalType}
       />
-    </Container>
+    </>
   );
 };
 

@@ -1,14 +1,14 @@
 import React from "react";
-import { Container, Form, Button, Row, Col } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { PageTitle } from "../../components";
 
 const MyProfile = () => {
   return (
-    <Container>
+    <>
       <PageTitle className="mb-3" title="My Profile" />
       <Form>
-      <Form.Group className="mb-3" controlId="formGridEmail">
+        <Form.Group className="mb-3" controlId="formGridEmail">
           <Form.Label>Full Name</Form.Label>
           <Form.Control type="text" placeholder="Enter fullname" />
         </Form.Group>
@@ -23,7 +23,7 @@ const MyProfile = () => {
           <Button variant="secondary">Change Password</Button>
         </Link>
       </Form>
-    </Container>
+    </>
   );
 };
 
