@@ -14,7 +14,7 @@ import {
   ManageModel,
   ModelsList,
   MyProfile,
-  LanguagesList,
+  UsersList,
   ResetPassword,
 } from "../pages";
 import { PrivateInterfaceLayout } from "../components";
@@ -54,6 +54,7 @@ function AppRoutes() {
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
+          <Route path="/*" element={<>404</>} />
         </Route>
         <Route
           element={
@@ -67,9 +68,11 @@ function AppRoutes() {
           <Route path="/" element={<ModelsList />} />
           <Route path="/manage-model" element={<ManageModel />} />
           <Route path="/models-list" element={<ModelsList />} />
-          <Route path="/languages-list" element={<LanguagesList />} />
+          <Route path="/users-list" element={<UsersList />} />
           <Route path="/profile" element={<MyProfile />} />
           <Route path="/change-password" element={<ChangePassword />} />
+          <Route path="/*" element={<>404</>} />
+
         </Route>
       </Routes>
     </BrowserRouter>

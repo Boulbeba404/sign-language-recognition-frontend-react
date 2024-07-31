@@ -5,8 +5,8 @@ import { PageTitle } from "../../components";
 import { Edit, Delete } from "@mui/icons-material";
 import { LanguageModal } from "../../components";
 
-const LanguagesList = () => {
-  const [languages, setLanguages] = useState([
+const UsersList = () => {
+  const [users, setUsers] = useState([
     { id: 1, name: "English" },
     { id: 2, name: "Spanish" },
     { id: 3, name: "French" },
@@ -25,7 +25,8 @@ const LanguagesList = () => {
   };
 
   const columns = [
-    { accessorKey: "name", header: "Language Name" },
+    { accessorKey: "name", header: "Email" },
+    { accessorKey: "fullname", header: "Full Name" },
     {
       accessorKey: "actions",
       header: "Actions",
@@ -35,10 +36,7 @@ const LanguagesList = () => {
             style={{ cursor: "pointer", marginRight: 8 }}
             onClick={() => handleOpenModal("Edit")}
           />
-          <Delete
-            style={{ cursor: "pointer" }}
-            onClick={() => {}}
-          />
+          <Delete style={{ cursor: "pointer" }} onClick={() => {}} />
         </div>
       ),
     },
@@ -46,16 +44,13 @@ const LanguagesList = () => {
 
   return (
     <Container>
-      <PageTitle className="mb-3" title="Languages List" />
+      <PageTitle className="mb-3" title="Users List" />
       <div className="d-flex justify-content-end mb-2">
-        <Button
-          style={{ width: 150 }}
-          onClick={() =>  handleOpenModal()}
-        >
-          Add Language
+        <Button style={{ width: 150 }} onClick={() => handleOpenModal()}>
+          Add User
         </Button>
       </div>
-      <MaterialReactTable columns={columns} data={languages} />
+      <MaterialReactTable columns={columns} data={users} />
       <LanguageModal
         show={showModal}
         handleClose={handleCloseModal}
@@ -65,4 +60,4 @@ const LanguagesList = () => {
   );
 };
 
-export default LanguagesList;
+export default UsersList;

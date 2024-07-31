@@ -25,7 +25,7 @@ const ManageModel = () => {
 
   return (
     <Container>
-      <PageTitle className="mb-3" title="Manage Model" />
+      <PageTitle className="mb-3" title="Create Model" />
       <Form onSubmit={handleSubmit} style={{ color: "#404040" }}>
         <Form.Group className="mb-3">
           <Form.Label className="ds-label">Name</Form.Label>

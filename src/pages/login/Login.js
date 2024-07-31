@@ -16,6 +16,7 @@ function Login() {
       const response = await authApi.login(email, password);
       const { accessToken, refreshToken, userId } = response.data;
       setAuthStore(accessToken, refreshToken, userId);
+      toast.success("Welcome to app")
     } catch (err) {
       console.error(err);
       toast.error("Please verify your email or password.");

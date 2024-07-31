@@ -1,13 +1,13 @@
 import React from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Navbar, Container, Nav, Dropdown } from "react-bootstrap";
-import { GearFill, List, Translate, PersonCircle } from "react-bootstrap-icons";
+import { GearFill, List, PersonCircle, Person } from "react-bootstrap-icons";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useAuth } from "../../hooks";
 
 const PrivateInterfaceLayout = ({ children }) => {
-  const {logout} = useAuth()
+  const { logout } = useAuth();
   return (
     <div style={{ height: "100vh" }}>
       <Navbar className="bg-white" expand="lg">
@@ -22,7 +22,9 @@ const PrivateInterfaceLayout = ({ children }) => {
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item as={Link} to="/profile">Manage Profile</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/profile">
+                  Manage Profile
+                </Dropdown.Item>
                 <Dropdown.Item as="button" onClick={logout}>
                   Logout
                 </Dropdown.Item>
@@ -39,16 +41,13 @@ const PrivateInterfaceLayout = ({ children }) => {
               component={<Link to="/manage-model" />}
               icon={<GearFill />}
             >
-              Manage Model
+              Create Model
             </MenuItem>
             <MenuItem component={<Link to="/models-list" />} icon={<List />}>
               Models List
             </MenuItem>
-            <MenuItem
-              component={<Link to="/languages-list" />}
-              icon={<Translate />}
-            >
-              Languages List
+            <MenuItem component={<Link to="/users-list" />} icon={<Person />}>
+              Users List
             </MenuItem>
           </Menu>
         </Sidebar>
