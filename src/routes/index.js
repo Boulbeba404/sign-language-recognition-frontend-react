@@ -16,6 +16,7 @@ import {
   MyProfile,
   UsersList,
   ResetPassword,
+  StartRecognition,
 } from "../pages";
 import { PrivateInterfaceLayout } from "../components";
 import { useAuth } from "../hooks";
@@ -50,7 +51,7 @@ function AppRoutes() {
           }
         >
           <Route path="/" element={<About />} />
-          <Route path="/start-recognition" element={<></>} />
+          <Route path="/start-recognition" element={<StartRecognition/>} />
           <Route path="/login" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/reset-password/:token" element={<ResetPassword />} />
