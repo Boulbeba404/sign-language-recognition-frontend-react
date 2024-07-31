@@ -17,6 +17,7 @@ import {
   UsersList,
   ResetPassword,
   StartRecognition,
+  NotFound,
 } from "../pages";
 import { PrivateInterfaceLayout } from "../components";
 import { useAuth } from "../hooks";
@@ -56,7 +57,7 @@ function AppRoutes() {
             <Route path="/login" element={<Login />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/reset-password/:token" element={<ResetPassword />} />
-            <Route path="/*" element={<>404</>} />
+            <Route path="/*" element={<NotFound/>} />
           </Route>
         ) : (
           <Route
@@ -74,7 +75,7 @@ function AppRoutes() {
             <Route path="/users-list" element={<UsersList />} />
             <Route path="/profile" element={<MyProfile />} />
             <Route path="/change-password" element={<ChangePassword />} />
-            <Route path="/*" element={<>404</>} />
+            <Route path="/*" element={<NotFound/>} />
           </Route>
         )}
       </Routes>

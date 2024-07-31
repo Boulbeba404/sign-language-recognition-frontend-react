@@ -2,12 +2,13 @@ import React from "react";
 import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
 import { Navbar, Container, Nav, Dropdown } from "react-bootstrap";
 import { GearFill, List, PersonCircle, Person } from "react-bootstrap-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useAuth } from "../../hooks";
 
 const PrivateInterfaceLayout = ({ children }) => {
   const { logout } = useAuth();
+  const navigate = useNavigate();
   return (
     <div style={{ height: "100vh" }}>
       <Navbar className="bg-white" expand="lg">
@@ -25,7 +26,10 @@ const PrivateInterfaceLayout = ({ children }) => {
                 <Dropdown.Item as={Link} to="/profile">
                   Manage Profile
                 </Dropdown.Item>
-                <Dropdown.Item as="button" onClick={logout}>
+                <Dropdown.Item as="button" onClick={()=>{
+                  logout();
+                  navigate("/");
+                }}>
                   Logout
                 </Dropdown.Item>
               </Dropdown.Menu>

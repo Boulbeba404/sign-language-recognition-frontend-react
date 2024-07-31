@@ -8,6 +8,7 @@ import About from "./about/About";
 import MyProfile from "./myProfile/MyProfile";
 import UsersList from './usersList/UsersList';
 import StartRecognition from "./startRecognition/StartRecognition";
+import NotFound from "./notFound/NotFound";
 
 export {
   Login,
@@ -19,5 +20,6 @@ export {
   About,
   MyProfile,
   UsersList,
-  StartRecognition
+  StartRecognition,
+  NotFound
 };
