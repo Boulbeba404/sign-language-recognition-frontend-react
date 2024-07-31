@@ -16,21 +16,35 @@ function App() {
 
   useEffect(() => {
     const loadModel = async () => {
-      try {
-        const response = await modelApi.getModelById(selectedModel);
-        const modelJson = response.data;
-
-        const loadedModel = await tf.loadLayersModel(
-          tf.io.fromMemory(modelJson)
-        );
-        setModel(loadedModel);
-      } catch (error) {
-        console.error("Error loading model:", error);
-      }
+        try {
+            const loadedModel = await tf.loadLayersModel(model);
+            setModel(loadedModel);
+        } catch (error) {
+            console.error("Error loading model:", error);
+        }
     };
 
     loadModel();
-  }, [selectedModel]);
+}, [selectedModel]);
+
+
+  // useEffect(() => {
+  //   const loadModel = async () => {
+  //     try {
+  //       const response = await modelApi.getModelById(selectedModel);
+  //       const modelJson = response.data;
+
+  //       const loadedModel = await tf.loadLayersModel(
+  //         tf.io.fromMemory(modelJson)
+  //       );
+  //       setModel(loadedModel);
+  //     } catch (error) {
+  //       console.error("Error loading model:", error);
+  //     }
+  //   };
+
+  //   loadModel();
+  // }, [selectedModel]);
 
   const detect = async () => {
     if (
