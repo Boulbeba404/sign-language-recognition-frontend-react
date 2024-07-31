@@ -43,37 +43,40 @@ function AppRoutes() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route
-          element={
-            <PublicRouteRender>
-              <Outlet />
-            </PublicRouteRender>
-          }
-        >
-          <Route path="/" element={<About />} />
-          <Route path="/start-recognition" element={<StartRecognition/>} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/reset-password/:token" element={<ResetPassword />} />
-          <Route path="/*" element={<>404</>} />
-        </Route>
-        <Route
-          element={
-            <PrivateRouteRender>
-              <PrivateInterfaceLayout>
+        {!accessToken && !refreshToken && !userId ? (
+          <Route
+            element={
+              <PublicRouteRender>
                 <Outlet />
-              </PrivateInterfaceLayout>
-            </PrivateRouteRender>
-          }
-        >
-          <Route path="/" element={<ModelsList />} />
-          <Route path="/manage-model" element={<ManageModel />} />
-          <Route path="/models-list" element={<ModelsList />} />
-          <Route path="/users-list" element={<UsersList />} />
-          <Route path="/profile" element={<MyProfile />} />
-          <Route path="/change-password" element={<ChangePassword />} />
-          <Route path="/*" element={<>404</>} />
-        </Route>
+              </PublicRouteRender>
+            }
+          >
+            <Route path="/" element={<About />} />
+            <Route path="/start-recognition" element={<StartRecognition />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/reset-password/:token" element={<ResetPassword />} />
+            <Route path="/*" element={<>404</>} />
+          </Route>
+        ) : (
+          <Route
+            element={
+              <PrivateRouteRender>
+                <PrivateInterfaceLayout>
+                  <Outlet />
+                </PrivateInterfaceLayout>
+              </PrivateRouteRender>
+            }
+          >
+            <Route path="/" element={<ModelsList />} />
+            <Route path="/manage-model" element={<ManageModel />} />
+            <Route path="/models-list" element={<ModelsList />} />
+            <Route path="/users-list" element={<UsersList />} />
+            <Route path="/profile" element={<MyProfile />} />
+            <Route path="/change-password" element={<ChangePassword />} />
+            <Route path="/*" element={<>404</>} />
+          </Route>
+        )}
       </Routes>
     </BrowserRouter>
   );

@@ -3,9 +3,11 @@ import { AuthForm } from "../../components";
 import { AuthAPI } from "../../apis";
 import { toast } from "react-toastify";
 import { useAuth } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const authApi = new AuthAPI();
+  const navigate = useNavigate();
   const { setAuthStore } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +18,8 @@ function Login() {
       const response = await authApi.login(email, password);
       const { accessToken, refreshToken, userId } = response.data;
       setAuthStore(accessToken, refreshToken, userId);
-      toast.success("Welcome to app")
+      navigate("/");
+      toast.success("Welcome to app");
     } catch (err) {
       console.error(err);
       toast.error("Please verify your email or password.");
