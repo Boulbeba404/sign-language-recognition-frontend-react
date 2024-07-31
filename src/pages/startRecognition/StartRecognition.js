@@ -3,7 +3,8 @@ import * as tf from "@tensorflow/tfjs";
 import Webcam from "react-webcam";
 import axios from "axios";
 import Select from "react-select";
-import { Container } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
+import logo from "../../assets/logo.png";
 
 function App() {
   const webcamRef = useRef(null);
@@ -16,7 +17,7 @@ function App() {
     const loadModel = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/get-model/1"
+          `http://localhost:3000/api/get-model/${selectedModel}`
         );
         const modelJson = response.data;
 
@@ -30,7 +31,7 @@ function App() {
     };
 
     loadModel();
-  }, []);
+  }, [selectedModel]);
 
   const detect = async () => {
     if (
@@ -64,50 +65,58 @@ function App() {
   }, [model]);
 
   return (
-    <Container className="p-4">
-      <div
-        style={{
-          position: "relative",
-          width: "640px",
-          height: "480px",
-          margin: "0 auto",
-        }}
-      >
-        <Webcam
-          ref={webcamRef}
-          style={{
-            position: "absolute",
-            background: "black",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zIndex: 9,
-            width: "100%",
-            height: "100%",
-          }}
-        />
-
-        <canvas
-          ref={canvasRef}
-          style={{
-            position: "absolute",
-            left: 0,
-            right: 0,
-            textAlign: "center",
-            zIndex: 10,
-            width: "100%",
-            height: "100%",
-          }}
-        />
-      </div>
-      <div className="mt-4 d-flex justify-content-center">
-        <Select
-          value={selectedModel}
-          onChange={() => {}}
-          options={modelOptions}
-          placeholder="Select a model..."
-        />
+    <Container className="py-4 px-2">
+      <div className="d-flex justify-content-between">
+        <div>
+          <div className="d-flex justify-content-center">
+          <Image src={logo} alt="App Logo" width={200} />
+          </div>
+          <h1 className="text-center">Start Classification</h1>
+          <div className="mt-4 d-flex justify-content-center">
+          <Select
+            value={selectedModel}
+            onChange={() => {}}
+            options={modelOptions}
+            placeholder="Select a model..."
+          />
         </div>
+        </div>
+        <div
+          style={{
+            position: "relative",
+            width: "740px",
+            height: "480px",
+            margin: "0 auto",
+          }}
+        >
+          <Webcam
+            ref={webcamRef}
+            style={{
+              position: "absolute",
+              background: "black",
+              left: 0,
+              right: 0,
+              textAlign: "center",
+              zIndex: 9,
+              width: "100%",
+              height: "100%",
+            }}
+          />
+
+          <canvas
+            ref={canvasRef}
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              textAlign: "center",
+              zIndex: 10,
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </div>
+      </div>
     </Container>
   );
 }

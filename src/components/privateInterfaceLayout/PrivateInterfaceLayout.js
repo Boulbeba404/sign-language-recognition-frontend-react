@@ -18,7 +18,7 @@ const PrivateInterfaceLayout = ({ children }) => {
           <Nav className="ms-auto">
             <Dropdown align={"end"}>
               <Dropdown.Toggle variant="link" id="profile-dropdown">
-                <PersonCircle size={30} />
+                <PersonCircle color="black" size={30} />
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
