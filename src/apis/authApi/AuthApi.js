@@ -24,5 +24,30 @@ class AuthAPI {
       confirmedNewPassword,
     });
   }
+
+  async getMyInfo() {
+    return await this._api.get(`getMyInfo`, {
+      headers: handleHeaders("token"),
+    });
+  }
+
+  async updateMyInfo(fullname, email) {
+    return await this._api.put(
+      `updateMyInfo`,
+      {
+        fullname,
+        email,
+      },
+      { headers: handleHeaders("token") }
+    );
+  }
+
+  async changepassword(newPassword) {
+    return this._api.put(
+      `changeMyPassword`,
+      { newPassword },
+      { headers: handleHeaders("token") }
+    );
+  }
 }
 export { AuthAPI };

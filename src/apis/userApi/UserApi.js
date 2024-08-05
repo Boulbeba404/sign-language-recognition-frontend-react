@@ -10,21 +10,6 @@ class UserAPI {
     );
   }
 
-  async getMyInfo() {
-    return await this._api.get(`getmyinfo`);
-  }
-
-  async updateMyInfo(fullname, email) {
-    return await this._api.put(`update`, {
-      fullname,
-      email,
-    });
-  }
-
-  async changepassword(newPassword) {
-    return this._api.put(`changepassword`,{newPassword});
-  }
-
   async getList() {
     return await this._api.get("list");
   }

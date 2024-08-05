@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import { PageTitle } from "../../components";
+import { toast } from "react-toastify";
+import { AuthAPI } from "../../apis";
 
 const ChangePassword = () => {
+  const authApi = new AuthAPI();
   const [passwords, setPasswords] = useState({
     oldPassword: "",
     newPassword: "",
@@ -17,14 +20,18 @@ const ChangePassword = () => {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (passwords.newPassword !== passwords.confirmPassword) {
-      alert("New passwords do not match!");
+      toast.error("New passwords do not match!");
       return;
     }
-    // Proceed with the password update logic
-    alert("Password successfully changed!");
+    try {
+      await authApi.changepassword(passwords.newPassword);
+      toast.success("Password successfully changed!");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
