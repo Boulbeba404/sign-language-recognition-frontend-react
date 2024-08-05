@@ -11,22 +11,27 @@ function App() {
   const canvasRef = useRef(null);
   const modelApi = new ModelAPI();
   const [model, setModel] = useState(null);
-  const [modelOptions, setModelOptions] = useState([]);
+  const [modelOptions, setModelOptions] = useState([
+    { value: 1, label: "SL-CNN-LSTM" },
+  ]);
   const [selectedModel, setSelectedModel] = useState(1);
 
   useEffect(() => {
     const loadModel = async () => {
-        try {
-            const loadedModel = await tf.loadLayersModel(model);
-            setModel(loadedModel);
-        } catch (error) {
-            console.error("Error loading model:", error);
-        }
+      try {
+        const modelUrl =
+          "https://raw.githubusercontent.com/Boulbeba404/sign-language-recognition-frontend-react/main/src/assets/model.json";
+        const loadedModel = await tf.loadLayersModel(modelUrl);
+        console.log(loadedModel, "loadedModel");
+        setModel(loadedModel);
+        console.log("Model loaded successfully");
+      } catch (error) {
+        console.error("Error loading model:", error);
+      }
     };
 
     loadModel();
-}, [selectedModel]);
-
+  }, [selectedModel]);
 
   // useEffect(() => {
   //   const loadModel = async () => {
@@ -88,7 +93,7 @@ function App() {
           <div className="mt-4 d-flex justify-content-center">
             <Select
               value={selectedModel}
-              onChange={() => {}}
+              onChange={(value) =>setSelectedModel(value)}
               options={modelOptions}
               placeholder="Select a model..."
             />

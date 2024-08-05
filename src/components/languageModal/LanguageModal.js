@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
 const LanguageModal = ({ show, handleClose, modalType }) => {
-  const [language, setLanguage] = useState("");
-
-  const handleChange = (event) => {
-    setLanguage({ ...language, name: event.target.value });
-  };
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassworrd] = useState("");
 
   const handleSave = () => {};
 
@@ -21,8 +19,8 @@ const LanguageModal = ({ show, handleClose, modalType }) => {
             <Form.Label>Full Name</Form.Label>
             <Form.Control
               type="text"
-              value={language.name}
-              onChange={handleChange}
+              value={fullname}
+              onChange={(event)=>setFullname(event.target.value )}
               placeholder="Enter fullname"
             />
           </Form.Group>
@@ -30,8 +28,8 @@ const LanguageModal = ({ show, handleClose, modalType }) => {
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="Email"
-              value={language.name}
-              onChange={handleChange}
+              value={email}
+              onChange={(event)=>setEmail(event.target.value )}
               placeholder="Enter email"
             />
           </Form.Group>
@@ -39,15 +37,15 @@ const LanguageModal = ({ show, handleClose, modalType }) => {
             <Form.Label>Password</Form.Label>
             <Form.Control
               type="password"
-              value={language.name}
-              onChange={handleChange}
+              value={password}
+              onChange={(event)=>setPassworrd(event.target.value )}
               placeholder="Enter password"
             />
           </Form.Group>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="primary" onClick={() => handleSave(language)}>
+        <Button variant="primary" onClick={() => handleSave()}>
           Submit
         </Button>
       </Modal.Footer>

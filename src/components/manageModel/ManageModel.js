@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form, InputGroup } from "react-bootstrap";
-import { FileEarmarkCode } from "react-bootstrap-icons";
+import { FileEarmarkCode, Trash } from 'react-bootstrap-icons';
 import ReactQuill from "react-quill";
 import { PageTitle } from "../../components";
 import { ModelAPI } from "../../apis/modelApi/ModelApi";
@@ -33,6 +33,16 @@ const ManageModel = ({ id }) => {
   const handleFetch = async () => {
     try {
       const response = await modelApi.getModelById(id);
+      const { recognition } = response.data;
+      setName(recognition?.name);
+      setArchitecture(recognition?.architecture);
+      const fileUrl = recognition?.file;
+      const res = await fetch(fileUrl);
+      const blob = await res.blob();
+      const fileName = fileUrl.split("/").pop();
+      const fileType = blob.type;
+      const newFile = new File([blob], fileName, { type: fileType });
+      setFile(newFile);
     } catch (err) {
       console.error(err);
     }
@@ -42,10 +52,10 @@ const ManageModel = ({ id }) => {
     event.preventDefault();
     try {
       if (id) {
-        await modelApi.updateModel(id, name, architecture, content, file);
+        await modelApi.updateModel(id, name, architecture, file);
         toast.success("Model updated successfully!");
       } else {
-        await modelApi.createModel(name, architecture, content, file);
+        await modelApi.createModel(name, architecture, file);
         toast.success("Model created successfully!");
       }
       navigate("/models-list");
@@ -85,30 +95,38 @@ const ManageModel = ({ id }) => {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <InputGroup>
-            <Form.Control
-              type="file"
-              onChange={handleFileChange}
-              accept=".json"
-              style={{ display: "none" }}
-              id="file-upload"
-            />
-            <InputGroup.Text
-              className="w-100"
-              as="label"
-              htmlFor="file-upload"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                cursor: "pointer",
-                justifyContent: "center",
-              }}
-            >
-              <FileEarmarkCode className="me-2" /> Click to upload JSON file
-            </InputGroup.Text>
-          </InputGroup>
-        </Form.Group>
-
+      <InputGroup>
+        <Form.Control
+          type="file"
+          onChange={handleFileChange}
+          accept=".json"
+          style={{ display: "none" }}
+          id="file-upload"
+        />
+        {file ? (
+          <InputGroup.Text className="w-100" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <span>{file.name}</span>
+            <Button variant="outline-danger" size="sm" onClick={()=>setFile(undefined)}>
+              <Trash />
+            </Button>
+          </InputGroup.Text>
+        ) : (
+          <InputGroup.Text
+            className="w-100"
+            as="label"
+            htmlFor="file-upload"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              cursor: "pointer",
+              justifyContent: "center",
+            }}
+          >
+            <FileEarmarkCode className="me-2" /> Click to upload JSON file
+          </InputGroup.Text>
+        )}
+ </InputGroup>
+ </Form.Group>
         <Button variant="dark" type="submit">
           Submit
         </Button>

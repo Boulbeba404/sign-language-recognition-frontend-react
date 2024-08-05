@@ -12,11 +12,7 @@ import { ModelAPI } from "../../apis";
 const ModelsList = () => {
   const modelApi = new ModelAPI();
   const navigate = useNavigate();
-  const [models, setModels] = useState([
-    { id: 1, architecture: "Arch 1", name: "Model 1" },
-    { id: 2, architecture: "Arch 2", name: "Model 2" },
-    { id: 3, architecture: "Arch 2", name: "Model 3" },
-  ]);
+  const [models, setModels] = useState([]);
 
   useEffect(() => {
     handleFetch();
@@ -24,6 +20,24 @@ const ModelsList = () => {
 
   const handleFetch = async () => {
     try {
+      const response = await modelApi.getList();
+      const { recognitions } = response.data;
+      setModels(
+        recognitions?.map((recognition) => ({
+          id: recognition?._id,
+          architecture: recognition?.architecture,
+          name: recognition?.name,
+        }))
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      await modelApi.deleteModel(id);
+      handleFetch();
     } catch (err) {
       console.error(err);
     }
@@ -39,9 +53,12 @@ const ModelsList = () => {
         <div>
           <Edit
             style={{ cursor: "pointer", marginRight: 8 }}
-            onClick={() => navigate(`/update-model/${row.id}`)}
+            onClick={() => navigate(`/update-model/${row.original.id}`)}
           />
-          <Delete style={{ cursor: "pointer" }} onClick={() => {}} />
+          <Delete
+            style={{ cursor: "pointer" }}
+            onClick={() => handleDelete(row.original.id)}
+          />
         </div>
       ),
     },

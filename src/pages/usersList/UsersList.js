@@ -7,9 +7,8 @@ import { LanguageModal } from "../../components";
 
 const UsersList = () => {
   const [users, setUsers] = useState([
-    { id: 1, name: "English" },
-    { id: 2, name: "Spanish" },
-    { id: 3, name: "French" },
+    { id: 1, email: "boulbebaellouze@gmail.com",fullname:"Boulbeba Ellouze" },
+    { id: 1, email: "ilyessellaami04@gmail.com",fullname:"Ilyess Sellami" },
   ]);
 
   const [showModal, setShowModal] = useState(false);
@@ -25,7 +24,7 @@ const UsersList = () => {
   };
 
   const columns = [
-    { accessorKey: "name", header: "Email" },
+    { accessorKey: "email", header: "Email" },
     { accessorKey: "fullname", header: "Full Name" },
     {
       accessorKey: "actions",
